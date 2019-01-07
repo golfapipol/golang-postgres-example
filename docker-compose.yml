@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  api-service:
+    container_name: api-service
+    image: api-service:latest
+    build:
+      context: .
+    ports:
+    - "3000:3000"
+    depends_on: 
+    - postgres
+
+  postgres:
+    container_name: postgres
+    image: postgres:11-alpine
+    environment:
+    - POSTGRES_PASSWORD=password
+    ports:
+    - "5432:5432"
